@@ -7,3 +7,8 @@ error_log
 .vscode/
 .idea/
 node_modules/
+backup/
+*.sql
+*.sql.gz
+*.tar.gz
+dbconfig.php

@@ -48,6 +48,7 @@ jobs:
           EOF
           )
 
+          LIST=$(printf '%s\n' "$LIST" | tr -d '\r')
           REMOTE_DIR="."
           if echo "$LIST" | grep -qx "public_html"; then
             REMOTE_DIR="public_html"

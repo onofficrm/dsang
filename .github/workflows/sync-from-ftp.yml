@@ -52,6 +52,7 @@ jobs:
           EOF
           )
 
+          LIST=$(printf '%s\n' "$LIST" | tr -d '\r')
           echo "FTP root listing:"
           echo "$LIST"
 
@@ -81,6 +82,11 @@ jobs:
             --exclude-glob .gitignore \
             --exclude-glob node_modules/ \
             --exclude-glob .DS_Store \
+            --exclude-glob backup/ \
+            --exclude-glob *.sql \
+            --exclude-glob *.sql.gz \
+            --exclude-glob *.tar.gz \
+            --exclude-glob dbconfig.php \
             . .
           bye
           EOF
@@ -96,4 +102,4 @@ jobs:
             exit 1
           fi
           git commit -m "Sync site files from FTP server."
-          git push
+          git -c http.postBuffer=524288000 -c http.version=HTTP/1.1 push
